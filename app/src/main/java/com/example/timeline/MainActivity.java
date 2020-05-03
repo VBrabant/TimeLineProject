@@ -6,14 +6,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.timeline.dto.Event;
 import com.example.timeline.view.BulletView;
-import com.example.timeline.view.RectangleView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,15 +26,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    BulletView createBullet(String label) {
-        BulletView myButton = new BulletView(this, R.color.blue, R.color.green, label);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                75,
-                75);
-        //params.weight = 1.0f;
-        myButton.setLayoutParams(params);
+    View createBullet(String label) {
+//        BulletView myButton = new BulletView(this, R.color.blue, R.color.green, label);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                75,
+//                75);
+//        //params.weight = 1.0f;
+//        myButton.setLayoutParams(params);
+//
+//        RelativeLayout relativeLayout = new RelativeLayout(this);
+//        RelativeLayout.LayoutParams relparams = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        relativeLayout.setLayoutParams(relparams);
+//        relativeLayout.addView(myButton);
 
-        return myButton;
+        //TextView textView = new TextView(this);
+        //textView.setText("prourout");
+        View layout = View.inflate(this, R.layout.repere_layout, null);
+        BulletView bulletView = (BulletView) layout.findViewById(R.id.bulletView);
+        bulletView.setBulletText(label);
+
+        TextView textView = (TextView) layout.findViewById(R.id.textView);
+        textView.setText("prout prout prout prout prout prout proutproutprout");
+        //setContentView(layout);
+        //relativeLayout.addView(textView);
+
+        //return myButton;
+        return layout;
     }
 
     View createAxis() {
@@ -68,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
             String label = "" + event.index;
 
-            BulletView myButton =  createBullet(label);
+            View myButton =  createBullet(label);
             myAxis = createAxis();
 
             mainLayout.addView(myButton);
